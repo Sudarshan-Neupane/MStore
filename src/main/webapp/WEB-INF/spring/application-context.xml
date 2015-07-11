@@ -46,9 +46,7 @@
 		<property name="hibernateProperties" ref="hibernateProperties" />
 		<property name="annotatedClasses">
 			<list>
-				<value>cs544.exercise8_1.bank.domain.Account</value>
-				<value>cs544.exercise8_1.bank.domain.AccountEntry </value>
-				<value>cs544.exercise8_1.bank.domain.Customer</value>
+				
 			</list>
 		</property>
 	</bean>

@@ -40,7 +40,7 @@
 		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">
 			<list>
-				<value>/WEB-INF/tiles/definitions/tile-definition.xml</value>
+				<value>/WEB-INF/tiles/definitions/tile-definitions.xml</value>
 			</list>
 		</property>
 	</bean>
