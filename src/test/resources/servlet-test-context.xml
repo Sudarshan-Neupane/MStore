@@ -38,7 +38,7 @@
         <property name="validationMessageSource" ref="messageSource" />
     </bean>
     
-    <jpa:repositories base-package="edu.mum.mstore.repository" />
+    <jpa:repositories base-package="mum.edu.mstore.repository" />
     
     <bean
         class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -49,7 +49,7 @@
     <bean id="entityManager"
               class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="packagesToScan" value="edu.mum.mstore.domain" />
+        <property name="packagesToScan" value="mum.edu.mstore.domain" />
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
         </property>
@@ -75,9 +75,9 @@
     </bean>
 
     <!-- Scan for transaction-based resources -->
-    <context:component-scan base-package="edu.mum.mstore.serviceimpl" />
-    <context:component-scan base-package="edu.mum.mstore.domain" />
-    <context:component-scan base-package="edu.mum.mstore.repository" />
+    <context:component-scan base-package="mum.edu.mstore.serviceimpl" />
+    <context:component-scan base-package="mum.edu.mstore.domain" />
+    <context:component-scan base-package="mum.edu.mstore.repository" />
 
     <tx:annotation-driven transaction-manager="transactionManager" />
 
