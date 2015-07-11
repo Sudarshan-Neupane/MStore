@@ -24,7 +24,7 @@ public class Category {
 	private List<SubCategory> subCategories;
 
 	public Category() {
-		this.subCategories = new ArrayList<>();
+		this.subCategories = new ArrayList<SubCategory>();
 	}
 
 	public Category(String name) {
