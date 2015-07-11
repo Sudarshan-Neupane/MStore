@@ -13,44 +13,41 @@
       http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
 	<!-- Scan for transaction-based resources -->
-<!-- 	<mvc:annotation-driven conversion-service="conversionService" /> -->
+	<!-- <mvc:annotation-driven conversion-service="conversionService" /> -->
 	<context:component-scan base-package="com.mum.edu.mstore.service" />
 	<context:component-scan base-package="com.mum.edu.mstore.domain" />
 	<context:component-scan base-package="com.mum.edu.mstore.repository" />
-<!-- 	<context:component-scan base-package="com.mum.waa.project.formatter" /> -->
+	<!-- <context:component-scan base-package="com.mum.waa.project.formatter" 
+		/> -->
 
-	<jpa:repositories base-package="mum.edu.mstore" query-lookup-strategy="create-if-not-found"/>
+	<jpa:repositories base-package="mum.edu.mstore"
+		query-lookup-strategy="create-if-not-found" />
 
-<!-- 	<bean id="entityManager"
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan" value="mum.edu.mstore.domain" />
-		<property name="jpaVendorAdapter">
-			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
-		</property>
-		<property name="jpaProperties">
-			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
-				<prop key="hibernate.hbm2ddl.import_files">
-					 mysql/users.sql,mysql/categories.sql
-				</prop>
-			</props>
-		</property>
-	</bean> -->
-	
-	
+	<!-- <bean id="entityManager" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"> 
+		<property name="dataSource" ref="dataSource" /> <property name="packagesToScan" 
+		value="mum.edu.mstore.domain" /> <property name="jpaVendorAdapter"> <bean 
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" /> </property> 
+		<property name="jpaProperties"> <props> <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop> 
+		<prop key="hibernate.hbm2ddl.auto">update</prop> <prop key="hibernate.hbm2ddl.import_files"> 
+		mysql/users.sql,mysql/categories.sql </prop> </props> </property> </bean> -->
+
+
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="hibernateProperties" ref="hibernateProperties" />
 		<property name="annotatedClasses">
 			<list>
-				
+
 			</list>
 		</property>
 	</bean>
-
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:jdbc.properties</value>
+		</property>
+	</bean>
 	<bean id="hibernateProperties"
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="properties">
@@ -75,11 +72,11 @@
 	</bean>
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
-		<bean id="transactionManager"
-			class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-			<property name="sessionFactory" ref="sessionFactory" />
-		</bean>
-	
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
 
 
 
