@@ -1,12 +1,10 @@
 package mum.edu.mstore.test;
 
-import java.util.Date;
-
-import javax.persistence.EnumType;
-
 import mum.edu.mstore.domain.Category;
 import mum.edu.mstore.domain.Product;
 import mum.edu.mstore.domain.Product.Type;
+import mum.edu.mstore.domain.ProductFile.FileType;
+import mum.edu.mstore.domain.ProductFile;
 import mum.edu.mstore.domain.SubCategory;
 import mum.edu.mstore.service.ProductService;
 
@@ -36,12 +34,16 @@ public class ProductTest extends BaseTest {
 		Product product = new Product();
 		Category category = new Category();
 		SubCategory subCategory = new SubCategory();
+		ProductFile productFile = new ProductFile();
+		productFile.setFilePath(musicImage);
+		productFile.setFileType(FileType.MP3);
 		subCategory.setName(SUB_CAT_NAME_1);
 		category.setName(CAT_NAME);
 		category.addSubCategory(subCategory);
 		product.setName(PROD_NAME);
 		product.setCategory(category);
 		product.setSubCategory(subCategory);
+		product.addProductFile(productFile);
 		product.setArtistName(Artist);
 		product.setYear(year);
 		product.setPrice(Price);

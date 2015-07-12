@@ -1,6 +1,7 @@
 package mum.edu.mstore.domain;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,9 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Transient;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Product {
@@ -27,13 +26,16 @@ public class Product {
 	private String name;
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "categoryId")
+	@JoinColumn(name = "category_Id")
 	private Category category;
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "subcategoryId")
+	@JoinColumn(name = "subcategory_Id")
 	private SubCategory subCategory;
 
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name= "product_Id")
+	List<ProductFile> productFile = new ArrayList<ProductFile>();
 	
 	@Column(name = "Artist")
 	private String artistName;
@@ -62,6 +64,22 @@ public class Product {
 		this.name = name;
 	}
 
+	
+
+	public List<ProductFile> getProductFile() {
+		return productFile;
+	}
+
+	public void setProductFile(List<ProductFile> productFile) {
+		this.productFile = productFile;
+	}
+	
+	public void addProductFile(ProductFile productFile)
+	{
+		this.getProductFile().add(productFile);
+	}
+
+	
 	public long getId() {
 		return id;
 	}
