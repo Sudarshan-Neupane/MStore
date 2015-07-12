@@ -36,6 +36,7 @@ public class User implements Serializable {
 	@NotEmpty
 	@Column(name = "last_name")
 	private String lastName;
+	@NotEmpty
 	@Column(name = "username")
 	private String userName;
 	@NotEmpty

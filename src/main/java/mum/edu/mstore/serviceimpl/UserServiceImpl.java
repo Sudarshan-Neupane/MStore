@@ -3,6 +3,7 @@ package mum.edu.mstore.serviceimpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +25,8 @@ class UserServiceImpl implements UserService {
 		if (u != null) {
 			throw new IllegalArgumentException("User already exist.");
 		}
+		t.setPassword(encryptPassword(t.getPassword()));
+		System.out.println(encryptPassword(t.getPassword())+"#######");
 		this.userRepository.save(t);
 	}
 
@@ -53,10 +56,15 @@ class UserServiceImpl implements UserService {
 	@Override
 	public User findByUserName(String userName) {
 		// TODO Auto-generated method stub
-		if(userName.isEmpty()){
+		if (userName.isEmpty()) {
 			throw new IllegalArgumentException("Invalid User Name");
 		}
 		return this.userRepository.findByUserName(userName);
+	}
+
+	private String encryptPassword(String password) {
+		BCryptPasswordEncoder pass = new BCryptPasswordEncoder();
+		return pass.encode(password);
 	}
 
 }
