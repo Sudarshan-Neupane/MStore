@@ -51,7 +51,7 @@ public class CategoryServiceImpl implements CategoryService{
 	@Override
 	public Category findByName(String catName) {
 		if(catName.isEmpty()){
-			throw new IllegalArgumentException("Invaldi category name");
+			throw new IllegalArgumentException("Invalid category name");
 		}
 		return this.categoryRepository.findByName(catName);
 	}
