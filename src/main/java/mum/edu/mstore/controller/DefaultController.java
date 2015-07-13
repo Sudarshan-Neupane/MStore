@@ -9,6 +9,7 @@ public class DefaultController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String getHome() {
+		System.out.println("click here");
 		return "home";
 	}
 }
