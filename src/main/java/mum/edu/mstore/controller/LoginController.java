@@ -19,12 +19,6 @@ public class LoginController {
 		return "login";
 
 	}
-	
-	@RequestMapping(value = "/loginsuccess", method = RequestMethod.GET)
-	public String loginSuccess(){
-		System.out.println("Hello");
-		return "home";
-	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(Model model) {

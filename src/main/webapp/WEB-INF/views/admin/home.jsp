@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Admin Home Page</title>
 </head>
 <body>
-page not found
+<h1>Admin Home Page</h1>
+
 </body>
 </html>

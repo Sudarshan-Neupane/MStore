@@ -14,16 +14,19 @@
 
 	<security:global-method-security
 		pre-post-annotations="enabled" />
+	<security:http pattern="/" security="none"/>
 	<security:http use-expressions="true">
 		<security:intercept-url pattern="/login"
 			access="permitAll" />
 		<security:intercept-url pattern="/logout"
 			access="permitAll" />
-		<security:intercept-url pattern="^/sec/.*$"
+		<security:intercept-url pattern="/secure/.*$"
 			access="isAuthenticated()" />
+		<security:intercept-url pattern="/secure/admin/**"
+			access="hasRole('ROLE_ADMIN')" />
 		<security:form-login login-processing-url="/j_spring_security_check"
 			username-parameter="username" password-parameter="password"
-			login-page="/login" default-target-url="/loginsuccess"
+			login-page="/login" default-target-url="/secure/home"
 			always-use-default-target="true" authentication-failure-url="/loginfailed" />
 		<security:logout logout-url="/logout"
 			logout-success-url="/" />

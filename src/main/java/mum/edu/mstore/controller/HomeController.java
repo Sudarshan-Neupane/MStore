@@ -1,13 +1,12 @@
 package mum.edu.mstore.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
+import mum.edu.mstore.domain.User;
+import mum.edu.mstore.domain.User.Role;
+import mum.edu.mstore.service.UserService;
+import mum.edu.mstore.utils.SpringUtils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -15,17 +14,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Handles requests for the application home page.
  */
 @Controller
+@RequestMapping("/secure")
 public class HomeController {
-	
-	
-	@RequestMapping(value="/", method = RequestMethod.GET)
-	public String getHome()
-	{
-		
-		System.out.println("inside Home");
-		return "home";
+
+	@Autowired
+	private UserService userService;
+
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String home() {
+		// retrieve database data
+		User user = this.userService.findByUserName(SpringUtils.getUserName());
+		if (user.getRole().equals(Role.ROLE_ADMIN)) {
+			return "redirect:/secure/admin/home";
+		} else if (user.getRole().equals(Role.ROLE_USER)) {
+			return "home";
+		}
+		return "";
 	}
-	
-	
-	
+
+	@RequestMapping(value = "/admin/home", method = RequestMethod.GET)
+	public String adminHome() {
+		return "admin/home";
+	}
+
 }
