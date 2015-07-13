@@ -1,4 +1,4 @@
-package mum.edu.mstore;
+package mum.edu.mstore.controller;
 
 import javax.validation.Valid;
 
