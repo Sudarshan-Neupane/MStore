@@ -14,7 +14,7 @@ public class UserTest extends BaseTest {
 	private static final String FIRST_NAME = "Sudarshan";
 	private static final String MIDDLE_NAME = "";
 	private static final String LAST_NAME = "Neupane";
-	private static final String USER_NAME = "sneupane@gmail.com";
+	private static final String USER_NAME = "admin@mstore.com";
 	private static final String PASSWORD = "nepal@123";
 	private static final String RE_PASSWORD = "nepal@123";
 	private static final String MOBILE = "3196140233L";
