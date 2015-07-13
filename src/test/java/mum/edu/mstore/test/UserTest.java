@@ -21,6 +21,7 @@ public class UserTest extends BaseTest {
 	private static final String CITY = "FAIRFIELD";
 	private static final String STATE = "IOWA";
 	private static final String ZIP_CODE = "52557";
+	private static final boolean ENABLED= true;
 	// private static final String COUNTRY = "United State of America";
 
 	private static final String CHANGED_LAST_NAME = "Neupane JI";

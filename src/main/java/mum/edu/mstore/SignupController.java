@@ -29,7 +29,6 @@ public class SignupController {
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public String signUpAdd(@Valid @ModelAttribute User user,
 			BindingResult result, Model model, RedirectAttributes attributes) {
-		System.out.println("inside signup post method");
 		if (result.hasErrors()) {
 			System.out.println("inside has error");
 			return "signup";
@@ -40,11 +39,10 @@ public class SignupController {
 			System.out.println("password not matched");
 			return "signup";
 		}
-		System.out.println("validation success call for service");
 		user.setRole(Role.ROLE_USER);
 		userService.add(user);
 		System.out.println("user add successfully");
-		return "/signup";
+		return "redirect:login";
 	}
 
 }

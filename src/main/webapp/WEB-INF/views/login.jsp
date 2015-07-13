@@ -11,7 +11,7 @@
                 <h2 class="form-signin-heading">Login Page</h2>
                 ${msg}
                 <c:if test="${not empty error}">
-                    <div class="error">Invalid Username of Password</div>
+                    <div class="error">Invalid Username or Password</div>
                 </c:if>
                 <form method="POST"
                       action='<spring:url value="/j_spring_security_check"></spring:url>'>

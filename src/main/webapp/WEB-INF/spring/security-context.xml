@@ -10,18 +10,35 @@
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context 
 		http://www.springframework.org/schema/context/spring-context.xsd">
-		
+
 
 	<security:global-method-security
 		pre-post-annotations="enabled" />
-
+	<security:http use-expressions="true">
+		<security:intercept-url pattern="/login"
+			access="permitAll" />
+		<security:intercept-url pattern="/logout"
+			access="permitAll" />
+		<security:intercept-url pattern="^/sec/.*$"
+			access="isAuthenticated()" />
+		<security:form-login login-processing-url="/j_spring_security_check"
+			username-parameter="username" password-parameter="password"
+			login-page="/login" default-target-url="/loginsuccess"
+			always-use-default-target="true" authentication-failure-url="/loginfailed" />
+		<security:logout logout-url="/logout"
+			logout-success-url="/" />
+		<security:session-management
+			invalid-session-url="/">
+		</security:session-management>
+	</security:http>
 
 	<security:authentication-manager>
 		<security:authentication-provider>
+			<security:password-encoder hash="bcrypt" />
 			<security:jdbc-user-service
 				data-source-ref="dataSource"
 				users-by-username-query="select username,password, enabled from users where username=?"
-				authorities-by-username-query="select username, role from user_roles where username =?" />
+				authorities-by-username-query="select username, role from users where username =?" />
 		</security:authentication-provider>
 	</security:authentication-manager>
 </beans>

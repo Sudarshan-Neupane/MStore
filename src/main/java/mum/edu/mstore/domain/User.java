@@ -12,7 +12,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.swing.text.StyledEditorKit.BoldAction;
 import javax.validation.Valid;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -21,7 +23,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author sudarshan
  * user 
  */
-@Entity
+@Entity(name="users")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -49,6 +51,8 @@ public class User implements Serializable {
 	private Profile profile;
 	@Enumerated(EnumType.STRING)
 	private Role role;
+	
+	private boolean enabled=true;
 
 	public User() {
 
@@ -137,6 +141,14 @@ public class User implements Serializable {
 
 	public Role getRole() {
 		return role;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	public void setRole(Role role) {

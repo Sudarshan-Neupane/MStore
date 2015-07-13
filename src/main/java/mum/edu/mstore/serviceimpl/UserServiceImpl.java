@@ -26,7 +26,6 @@ class UserServiceImpl implements UserService {
 			throw new IllegalArgumentException("User already exist.");
 		}
 		t.setPassword(encryptPassword(t.getPassword()));
-		System.out.println(encryptPassword(t.getPassword())+"#######");
 		this.userRepository.save(t);
 	}
 
