@@ -32,6 +32,10 @@ public class Product {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "subcategory_Id")
 	private SubCategory subCategory;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "album_Id")
+	private Album album;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name= "product_Id")
@@ -103,8 +107,18 @@ public class Product {
 	public void setSubCategory(SubCategory subCategory) {
 		this.subCategory = subCategory;
 	}
+	
+	
 
-    public String getArtistName() {
+    public Album getAlbum() {
+		return album;
+	}
+
+	public void setAlbum(Album album) {
+		this.album = album;
+	}
+
+	public String getArtistName() {
 		return artistName;
 	}
 

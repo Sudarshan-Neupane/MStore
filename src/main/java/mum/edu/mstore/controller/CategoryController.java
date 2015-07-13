@@ -40,7 +40,7 @@ public class CategoryController {
         return "admin/addCategory";
     }
 
-    @RequestMapping(value = "/category/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/category/add", method = RequestMethod.POST)
     public String onSaveCategory(HttpServletRequest request, HttpServletResponse response) {
         Category category = (Category) request.getSession().getAttribute(KEY);
         category.setName(request.getParameter("name"));

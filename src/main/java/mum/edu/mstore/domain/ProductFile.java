@@ -20,6 +20,10 @@ public class ProductFile {
 	private FileType fileType;
 	
 	private String filePath;
+	
+	public ProductFile() {
+
+	}
 
 	public long getId() {
 		return id;
