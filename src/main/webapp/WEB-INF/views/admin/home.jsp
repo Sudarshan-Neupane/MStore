@@ -9,6 +9,7 @@
 </head>
 <body>
 <h1>Admin Home Page</h1>
+<a href="<c:url value="categories" />" > Category Mgmt</a><br/>
 <a href="<c:url value="/logout" />" > Logout</a>
 </body>
 </html>

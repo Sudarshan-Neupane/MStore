@@ -15,25 +15,28 @@
 	<security:global-method-security
 		pre-post-annotations="enabled" />
 	<security:http pattern="/" security="none"/>
-	<security:http use-expressions="true">
+	<security:http use-expressions="true" auto-config="true">
+		<security:remember-me key="mum.edu.mstore" />
 		<security:intercept-url pattern="/login"
 			access="permitAll" />
 		<security:intercept-url pattern="/logout"
 			access="permitAll" />
-		<security:intercept-url pattern="/secure/.*$"
+		<security:intercept-url pattern="^/secure/.*$"
 			access="isAuthenticated()" />
-		<security:intercept-url pattern="/secure/admin/**"
-			access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="^/secure/admin/.*$"
+		access="ROLE_ADMIN"/>
 		<security:form-login login-processing-url="/j_spring_security_check"
 			username-parameter="username" password-parameter="password"
 			login-page="/login" default-target-url="/secure/home"
 			always-use-default-target="true" authentication-failure-url="/loginfailed" />
-		<security:logout logout-url="/logout" logout-success-url="/"/>
+		<security:logout logout-url="/logout"
+			logout-success-url="/" invalidate-session="true" />
 		<security:session-management
-			invalid-session-url="/">
+			invalid-session-url="/" session-authentication-error-url="/">
 		</security:session-management>
+		<security:csrf disabled="true"/>
 	</security:http>
-
+	
 	<security:authentication-manager>
 		<security:authentication-provider>
 			<security:password-encoder hash="bcrypt" />

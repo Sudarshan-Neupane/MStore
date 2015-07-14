@@ -60,4 +60,8 @@ public class Category {
 		this.subCategories.add(subCategory);
 	}
 
+	public void removeSubCategory(SubCategory subCategory) {
+		this.subCategories.remove(subCategory);
+	}
+
 }

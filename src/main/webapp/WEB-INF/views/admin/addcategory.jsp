@@ -28,15 +28,18 @@
                 var dataContainer = $('#table tbody');
                 $("#add").click(function (event) {
                     event.preventDefault();
+                    
                     $.ajax({
                         url: '${pageContext.request.contextPath}/secure/admin/subcategory/add',
-                        type: 'GET',
+                        type: 'POST',
                         data: $('#form1').serialize(),
                         success: function (result) {
+                        	dataContainer.empty();
                              $.each(result.subCategories, function (i, item) {
                                  console.log(i + " " + item.category);
-                                 dataContainer.append($("<tr>").append($("<td>")).html(item.name));
+                                 dataContainer.append($("<tr>").append("<td>"+ parseInt(i+1) + "</td><td>" + item.name + "</td>"));
                              });
+//                              .append($("<td>")).html(item.name)
                         }, fail:function (xhr, status, exception) {
                             console.log(xhr, status, exception);
                         }
@@ -48,7 +51,7 @@
     </head>
     <body>
         <h1>Add Category</h1>
-        <form method="POST" action="" enctype="application/x-www-form-urlencoded">
+        <form method="POST" action="">
             <label>Name</label>
             <input type="text" name="name" required="required"/>
             <table id="table">
