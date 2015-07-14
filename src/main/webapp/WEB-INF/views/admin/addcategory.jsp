@@ -16,8 +16,8 @@
                 display: none;
             }
         </style>
-<%--         <spring:url value="/resources/js/javascript.2.1.4.js" var="js" /> --%>
-<spring:url value="/resources/js/script.js" var="js" />
+        <spring:url value="/resources/js/javascript.2.1.4.js" var="js" />
+<%-- <spring:url value="/resources/js/script.js" var="js" /> --%>
         <script type="text/javascript" src="${js}"></script>
         <script>
             "use strict";
@@ -28,23 +28,46 @@
                 var dataContainer = $('#table tbody');
                 $("#add").click(function (event) {
                     event.preventDefault();
-                    
+                    console.log("check empty: " + $("#txtSubCatName").val().length);
+                    if($("#txtSubCatName").val().length < 0){
+                    	console.log("empty");
+                    	return;
+                    }
                     $.ajax({
                         url: '${pageContext.request.contextPath}/secure/admin/subcategory/add',
                         type: 'POST',
                         data: $('#form1').serialize(),
-                        success: function (result) {
-                        	dataContainer.empty();
-                             $.each(result.subCategories, function (i, item) {
-                                 console.log(i + " " + item.category);
-                                 dataContainer.append($("<tr>").append("<td>"+ parseInt(i+1) + "</td><td>" + item.name + "</td>"));
-                             });
-//                              .append($("<td>")).html(item.name)
-                        }, fail:function (xhr, status, exception) {
-                            console.log(xhr, status, exception);
-                        }
+                        success: ajaxSuccess,
+						fail:ajaxFailure
                     });
+                    $("#txtSubCatName").val('');
+                    $('.subCat').fadeOut('slow');
                 });
+
+
+                $("#table").on("click", "a",function(){
+                	var val = $(this).attr("href");
+                    $.ajax({
+                        url: '${pageContext.request.contextPath}/secure/admin/subcategory/delete?name='+val,
+                        type: 'GET',
+                        success: ajaxSuccess,
+						fail:ajaxFailure
+                    });
+                    return false;
+                });
+                
+                function ajaxSuccess(result) {
+                	dataContainer.empty();
+                    $.each(result.subCategories, function (i, item) {
+                        console.log(i + " " + item.name);
+                        dataContainer.append($("<tr>")
+                       		 .append("<td>"+ parseInt(i+1) + "</td><td>"
+                       				 + item.name + "</td><td>" + "<a href='"+item.name+"'>Remove</a>" +"</td>"));
+                    });
+                }
+                function ajaxFailure(xhr, status, exception) {
+                    console.log(xhr, status, exception);
+                }
             });
         </script>
         <title>Add Category</title>
@@ -59,6 +82,7 @@
                     <tr>
                         <th>S.No.</th>
                         <th>Sub Cat Name</th>
+                        <th>Option</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -72,7 +96,7 @@
         <div class="subCat">
             <form id="form1">
                 <label>Sub Cat Name: </label>
-                <input type="text" name="name" required="required"/>
+                <input type="text" id="txtSubCatName" name="name"/>
                 <button type="button" id="add">Add</button>
             </form>
         </div>

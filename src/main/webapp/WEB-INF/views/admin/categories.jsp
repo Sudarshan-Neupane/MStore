@@ -14,11 +14,13 @@
             <tr>
                 <td>S No.</td>
                 <td>Name</td>
+                <td>Option</td>
             </tr>
             <c:forEach items="${categories}" varStatus="ind" var="category">
                 <tr>
                     <td>${ind.index+1}</td>
                     <td>${category.name}</td>
+                    <td><a href="<spring:url value='/secure/admin/category/edit/${category.id}'/>">Edit</a>/<a href="<spring:url value='/secure/admin/category/delete?id=${category.id}'/>">Delete</a></td>
                 </tr>
             </c:forEach>
 
