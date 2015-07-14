@@ -1,7 +1,5 @@
 package mum.edu.mstore.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import mum.edu.mstore.domain.Category;
@@ -13,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -96,8 +93,14 @@ public class CategoryController {
 	public @ResponseBody Category getSubCategory(@RequestParam("categoryName") String name)  {
           System.out.println(name);
 		return categoryService.findByName(name);
-//		List<SubCategory> mySubCategory = myCategory.getSubCategories();
-//		return mySubCategory;
+		
+	}
+	
+	@RequestMapping(value = "/subcategory/listbyid", method = RequestMethod.GET)	
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody Category getSubCategoryById(@RequestParam("categoryId") Long id)  {
+          System.out.println(id);
+		return categoryService.findOne(id);
 		
 	}
 

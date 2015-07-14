@@ -47,4 +47,11 @@ public class AlbumServiceImpl implements AlbumService{
 		return this.albumRepository.findAll();
 	}
 
+	@Transactional
+	@Override
+	public void deleteAlbum(Long id) {
+		this.albumRepository.delete(id);
+		
+	}
+
 }
