@@ -94,6 +94,18 @@
 			</div> </td>
 			</tr>
 			
+					<tr>
+				<td><label for="category.name">Category:</label> </td>
+				<td>
+				    <form:select id="categoryName" path = "category.name" onchange="selectSubCategory()" >
+				    <form:option value="Select Category"/>
+				    <form:options items="${categories}" itemValue="name" itemLabel="name"/>
+				    </form:select>
+				 </td>
+			<td><div style="text-align: center;">
+				<form:errors path="category.name" cssStyle="color : red;" />
+			</div> </td>
+			</tr>
 	
 			<tr>
 			<td>	<input type="Submit" value="Add"> </td>
