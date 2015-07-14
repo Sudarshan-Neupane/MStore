@@ -28,8 +28,7 @@
 			username-parameter="username" password-parameter="password"
 			login-page="/login" default-target-url="/secure/home"
 			always-use-default-target="true" authentication-failure-url="/loginfailed" />
-		<security:logout logout-url="/logout"
-			logout-success-url="/" />
+		<security:logout logout-url="/logout" logout-success-url="/"/>
 		<security:session-management
 			invalid-session-url="/">
 		</security:session-management>

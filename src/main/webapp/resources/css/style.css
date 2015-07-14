@@ -1,4 +1,48 @@
-@CHARSET "UTF-8";
+*{
+    margin: 0px auto;
+    padding: 0px auto;
+}
 body{
 	background-color: #cccccc;
+}
+.container{
+    width: 960px;
+    height: auto;
+    background-color: white;
+}
+.menu{
+    color:green;
+    margin-top: 15px;
+}
+.menu a{
+    padding: 5px;
+}
+.sidebar {
+float: left;
+width: 250px;
+}
+.products{
+    width: 800px;
+    float: right;
+    height: auto;
+    overflow: auto;
+}
+.product{
+    width: 200px;
+    height: 250px;
+    margin: 5px;
+    background-color: #cccccc;
+    float: left;
+}
+.product img{
+    height: 210px;
+    width: 200px;
+}
+.buynow{
+    margin-left: 20px;
+    width: 200px;
+    height: 30px;
+}
+footer{
+    border-top: 1px solid darkslategrey;
 }
