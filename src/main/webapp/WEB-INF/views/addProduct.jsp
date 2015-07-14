@@ -95,7 +95,7 @@
 			</tr>
 			
 					<tr>
-				<td><label for="category.name">Category:</label> </td>
+				<td><label for="category.name">Category Names:</label> </td>
 				<td>
 				    <form:select id="categoryName" path = "category.name" onchange="selectSubCategory()" >
 				    <form:option value="Select Category"/>
