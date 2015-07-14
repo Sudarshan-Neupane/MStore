@@ -2,104 +2,104 @@
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="spring"
-	uri="http://www.springframework.org/security/tags"%>
+	uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
 <head>
 <!-- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> -->
-
 <title>Add Product Page</title>
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+ function selectSubCategory(){
 
+    var categoryName =  $("#categoryName").val();
+	 var dataContainer = $("select#subCategory");
+// 	 alert(categoryName);
+// 	 return false;
+	 $.ajax({
+         url: '${pageContext.request.contextPath}/secure/admin/subcategory/list?categoryName='+categoryName,
+         type: 'GET',
+         success: ajaxSuccess,
+			fail:ajaxFailure
+     });
+
+  function ajaxSuccess(result){
+//               alert(result.subCategories);
+              dataContainer.empty();
+              $.each(result.subCategories, function (i, item) {
+                  console.log(i + " " + item.name);
+                  dataContainer.append($("<option>")
+                 		 .append(item.name));
+              });
+
+              
+ 
+	   }
+
+  function ajaxFailure(){
+             alert("Failure");
+
+	  }
+	 }
+</script>
 </head>
 <body>
+     
+<spring:url value="addProduct" var="action"/>
+
 	<form:form modelAttribute="product"
-		action='<spring:url value="/addProduct"></spring:url>' method="POST">
+		action= "${action}" method="POST">
 
 
 		<fieldset>
 			<legend>Add an Product</legend>
-			<p>
-				<form:errors path="*" cssStyle="color : red;" />
-			</p>
+			
+			<table>
+			<tr>
+			<td>	<form:errors path="*" cssStyle="color : red;" /></td>
+			</tr>
 
-			<p>
-				<label for="name">Product Name:</label>
-				<form:input path="name" />
-			<div style="text-align: center;">
+			<tr>
+			<td>	<label for="name">Product Name:</label> </td>
+			<td>	<form:input path="name" /> </td>
+			<td><div style="text-align: center;">
 				<form:errors path="name" cssStyle="color : red;" />
-			</div>
-			</p>
-
-			<p>
-				<label for="category">Product Category: </label>
-				<form:input path="category" />
-			<div style="text-align: center;">
-				<form:errors path="category" cssStyle="color : red;" />
-			</div>
-			</p>
-
-
-			<p>
-				<label for="subCategory">Sub Category: </label>
-				<form:input path="subCategory" id="birthDate" />
-				<form:errors path="subCategory" cssStyle="color : red;" />
-			</p>
-
-			<p>
-				<label for="album">Album: </label>
-				<form:input path="album" id="album" />
-				<form:errors path="album" cssStyle="color : red;" />
-			</p>
-
-
-
-			<p>
-				<label for="artistName">Artist Name: </label>
-				<form:input path="artistName" id="artistName" />
-			<div style="text-align: center;">
-				<form:errors path="artistName" cssStyle="color : red;" />
-			</div>
-			</p>
-
-
-			<p>
-				<label for="year">Release Year: </label>
-				<form:input path="year" id="year" />
-			<div style="text-align: center;">
-				<form:errors path="year" cssStyle="color : red;" />
-			</div>
-			</p>
-
-
-			<p>
-				<label for="price">Price: </label>
-				<form:input path="price" id="price" />
-			<div style="text-align: center;">
-				<form:errors path="price" cssStyle="color : red;" />
-			</div>
-			</p>
-
-			<p>
-				<label for="length">Length: </label>
-				<form:input path="length" id="length" />
-			<div style="text-align: center;">
-				<form:errors path="length" cssStyle="color : red;" />
-			</div>
-			</p>
-
-			<p>
-				<input type="button" value="Add">
-			</p>
-
-
-			<c:forEach var="productFile" items="${productFiles}">
-            
-				<form:label path="productFile.filePath">File Path:</form:label>
-				<form:input path="productFile.filePath" />
-				<c:out value="${productFile.filePath}"></c:out>	
-			</c:forEach>
-
+			</div></td>
+			</tr>
+			
+				<tr>
+				<td><label for="category.name">Category:</label> </td>
+				<td>
+				    <form:select id="categoryName" path = "category.name" onchange="selectSubCategory()" >
+				    <form:option value="Select Category"/>
+				    <form:options items="${categories}" itemValue="name" itemLabel="name"/>
+				    </form:select>
+				 </td>
+			<td><div style="text-align: center;">
+				<form:errors path="category.name" cssStyle="color : red;" />
+			</div> </td>
+			</tr>
+			
+			<tr>
+				<td><label for="subCategory.name">SubCategory:</label> </td>
+				<td>
+				    <form:select id="subCategory" path = "subCategory.name">
+				    <form:option value="Select Sub Category"/>
+<%-- 				    <form:options items="${categories}" itemValue="name" itemLabel="name"/> --%>
+				    </form:select>
+				 </td>
+			<td><div style="text-align: center;">
+				<form:errors path="category.name" cssStyle="color : red;" />
+			</div> </td>
+			</tr>
+			
+	
+			<tr>
+			<td>	<input type="Submit" value="Add"> </td>
+			</tr>
+			
+			</table>
 
 		</fieldset>
 

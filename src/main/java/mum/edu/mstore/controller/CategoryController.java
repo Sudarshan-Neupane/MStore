@@ -1,5 +1,7 @@
 package mum.edu.mstore.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import mum.edu.mstore.domain.Category;
@@ -86,6 +88,17 @@ public class CategoryController {
 		System.out.println("sub category added: "
 				+ request.getParameter("name"));
 		return category;
+	}
+	
+	
+	@RequestMapping(value = "/subcategory/list", method = RequestMethod.GET)	
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody Category getSubCategory(@RequestParam("categoryName") String name)  {
+          System.out.println(name);
+		return categoryService.findByName(name);
+//		List<SubCategory> mySubCategory = myCategory.getSubCategories();
+//		return mySubCategory;
+		
 	}
 
 	// @RequestMapping(value = "/subcategory/add", method = RequestMethod.POST)

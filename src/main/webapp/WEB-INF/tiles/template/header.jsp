@@ -10,6 +10,7 @@
         <title>Insert title here</title>
         <spring:url value="/resources/css/style.css" var="mainCss" />
         <link href="${mainCss}" rel="stylesheet" />
+        
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     </head>
     <body>

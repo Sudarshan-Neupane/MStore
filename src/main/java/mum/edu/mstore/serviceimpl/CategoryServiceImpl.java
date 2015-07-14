@@ -3,6 +3,7 @@ package mum.edu.mstore.serviceimpl;
 import java.util.List;
 
 import mum.edu.mstore.domain.Category;
+import mum.edu.mstore.domain.SubCategory;
 import mum.edu.mstore.repository.CategoryRepository;
 import mum.edu.mstore.service.CategoryService;
 
@@ -61,5 +62,6 @@ public class CategoryServiceImpl implements CategoryService {
 	public void deleteCategory(Long id) {
 		this.categoryRepository.delete(id);
 	}
+
 
 }
