@@ -12,6 +12,8 @@
         <link href="${mainCss}" rel="stylesheet" />
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     </head>
     <body>
         <div class="container">
@@ -19,9 +21,9 @@
                 <div class="menu">            
                     <a href='<spring:url value="/"/>'>Home </a> 
                     <a href='<spring:url value="/login"/>'>Login </a> 
-                     <a href='<spring:url value="/signup"/>'>Sign Up </a>
+                    <a href='<spring:url value="/signup"/>'>Sign Up </a>
                 </div>
             </header>
-                
+
             <hr/>
         </div>
