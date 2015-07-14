@@ -6,9 +6,9 @@
 <head>
 <meta http-equiv="refresh" content="5;URL=<c:url value='/secure/home'/>" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Page not found</title>
 </head>
 <body>
-page not found
+    <img src="<c:url value="/resources/images/pagenotfound.jpg"/>"/>
 </body>
 </html>
