@@ -1,5 +1,6 @@
-package mum.edu.mstore.aspect;
+package mum.edu.mstore.scheduler;
 
+import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -9,20 +10,32 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import mum.edu.mstore.domain.User;
+import mum.edu.mstore.service.UserService;
 
-import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Aspect;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-@Aspect
 @Component
-public class EmailAspect{
-    @After("execution(public * mum.edu.mstore.controller.ProfileController.updateProfile(..))")
-    public void sendmail(JoinPoint joinpoint) {
+@Scope("singleton")
+public class EmailScheduler {
+
+    @Autowired
+    private UserService userService;
+    @Scheduled(cron= "0 0 0 1 1 ?")
+    public void sendEmail() {
+        System.out.println("email send");
+        List<User> users = this.userService.findAll();
+        for(User u : users){
+            this.sendNewYearEmail(u.getUserName());
+        }
+    }
+
+    private void sendNewYearEmail(String email) {
         final String username = "sn6195@gmail.com";
         final String password = "onetwofc";
-      
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -42,10 +55,12 @@ public class EmailAspect{
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("sn6195@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse("mesudarshan7@gmail.com"));
-            message.setSubject("Testing Subject");
-            message.setText("Hi,"
-                    + "\n\n Thank you for submitting your profile! form aop");
+                    InternetAddress.parse(email));
+            message.setSubject("Happy New Year");
+            message.setText("Dear " + email
+                    + "\n\n Happy New Year \n May this NEW YEAR bring lots of happiness in your life."
+                    + "\n\n\n Thank you for using MusicStore(mstore.com)"
+                    + "\n MStore Team");
 
             Transport.send(message);
 
