@@ -9,7 +9,7 @@ import org.aspectj.lang.annotation.Aspect;
 public class EmailAspect {
 
 	static Logger logger = Logger.getLogger(EmailAspect.class.getName());
-	@After("execution(* mum.edu.mstore.HomeController.sendEmailTest(..))")
+	@After("execution(* mum.edu.mstore.HomeController.home(..))")
 	public void sendEmail(){
 		System.out.println("send email");
 		
