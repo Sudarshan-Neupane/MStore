@@ -34,6 +34,13 @@ width: 250px;
     background-color: #cccccc;
     float: left;
 }
+.productdetails{
+    width: 400px;
+    height: 500px;
+    margin: 5px;
+    background-color: #cccccc;
+    float: left;
+}
 .product img{
     height: 210px;
     width: 200px;
@@ -61,4 +68,10 @@ footer{
 }
 .error{
     color:red;
+}
+table tr{
+    margin: 37px;
+}
+td{
+    padding: 10px !important; 
 }
