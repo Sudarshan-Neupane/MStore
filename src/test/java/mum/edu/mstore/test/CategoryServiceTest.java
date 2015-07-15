@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 //@RunWith(Suite.class)
 //@Suite.SuiteClasses({AlbumServiceTest.class})
-public class CategoryServiceTest extends BaseTest{
+public class CategoryServiceTest extends BaseTest {
 
 	@Autowired
 	private CategoryService categoryService;
@@ -28,5 +28,11 @@ public class CategoryServiceTest extends BaseTest{
 		Category c = this.categoryService.findByName(CAT_NAME);
 		System.out.println(c.getName());
 		Assert.assertEquals(2, c.getSubCategories().size());
+		SubCategory subCat = c.getSubCategories().get(0);
+		System.out.println("subCat Name: " + subCat.getName());
+		SubCategory sc = this.categoryService
+				.findSubCategoryBySubCategoryId(subCat.getId());
+		Assert.assertEquals(subCat.getName(), sc.getName());
+
 	}
 }

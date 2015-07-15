@@ -63,5 +63,11 @@ public class CategoryServiceImpl implements CategoryService {
 		this.categoryRepository.delete(id);
 	}
 
+	@Override
+	public SubCategory findSubCategoryBySubCategoryId(Long id) {
+		// TODO Auto-generated method stub
+		return (SubCategory) this.categoryRepository.findSubCategoryBySubCategoryId(id);
+	}
+
 
 }

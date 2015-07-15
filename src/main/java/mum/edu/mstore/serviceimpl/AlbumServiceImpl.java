@@ -2,13 +2,14 @@ package mum.edu.mstore.serviceimpl;
 
 import java.util.List;
 
+import mum.edu.mstore.domain.Album;
+import mum.edu.mstore.domain.SubCategory;
+import mum.edu.mstore.repository.AlbumRepository;
+import mum.edu.mstore.service.AlbumService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import mum.edu.mstore.domain.Album;
-import mum.edu.mstore.repository.AlbumRepository;
-import mum.edu.mstore.service.AlbumService;
 
 @Service
 public class AlbumServiceImpl implements AlbumService{
@@ -52,6 +53,21 @@ public class AlbumServiceImpl implements AlbumService{
 	public void deleteAlbum(Long id) {
 		this.albumRepository.delete(id);
 		
+	}
+
+	@Override
+	public Album findByName(String albumName) {
+		// TODO Auto-generated method stub
+		if (albumName.isEmpty()) {
+			throw new IllegalArgumentException("Invalid Album name");
+		}
+		return this.albumRepository.findByName(albumName);
+	}
+
+	@Override
+	public List<Album> findByAlbumSubCategory(SubCategory subCategory) {
+		// TODO Auto-generated method stub
+		return this.albumRepository.findBySubCategory(subCategory);
 	}
 
 }

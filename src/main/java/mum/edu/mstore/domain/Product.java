@@ -41,8 +41,6 @@ public class Product {
 	@JoinColumn(name= "product_Id")
 	List<ProductFile> productFile = new ArrayList<ProductFile>();
 	
-	@Column(name = "Artist")
-	private String artistName;
 
 	private long year;
 
@@ -53,8 +51,6 @@ public class Product {
 	@Column(name = "Image")
 	private String musicImage;
 
-	@Enumerated(EnumType.STRING)
-	private Type type;
 
 	public Product() {
 
@@ -118,13 +114,6 @@ public class Product {
 		this.album = album;
 	}
 
-	public String getArtistName() {
-		return artistName;
-	}
-
-	public void setArtistName(String artistName) {
-		this.artistName = artistName;
-	}
 
 	public long getYear() {
 		return year;
@@ -158,16 +147,5 @@ public class Product {
 		this.musicImage = musicImage;
 	}
 
-	public Type getType() {
-		return type;
-	}
-
-	public void setType(Type type) {
-		this.type = type;
-	}
-
-	public enum Type {
-		MP3, MP4, WMV, WAV
-	}
 
 }

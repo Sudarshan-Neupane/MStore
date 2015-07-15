@@ -1,6 +1,5 @@
 package mum.edu.mstore.domain;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -24,6 +23,15 @@ public class ProductFile {
 	public ProductFile() {
 
 	}
+
+	
+	
+	public ProductFile(String filePath, FileType fileType) {
+		this.fileType = fileType;
+		this.filePath = filePath;
+	}
+
+
 
 	public long getId() {
 		return id;
