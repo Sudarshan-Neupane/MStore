@@ -72,10 +72,14 @@ public class AlbumsController {
 
     @RequestMapping(value = "/album/edit/{id}", method = RequestMethod.POST)
     public String onSaveAlbumEditForm(@ModelAttribute @Valid Album album,
-            BindingResult result, RedirectAttributes attributes, Model model) {
+            BindingResult result, RedirectAttributes attributes, Model model,
+            HttpServletRequest request, HttpServletResponse response) {
         if (result.hasErrors()) {
             model.addAttribute("categories", this.categoryService.findAll());
             return "admin/addalbum";
+        }
+        if (!album.getImage().isEmpty()) {
+            this.uploadImage(album.getImage(), request, response);
         }
         System.out.println(album.getId());
         this.albumService.update(album);

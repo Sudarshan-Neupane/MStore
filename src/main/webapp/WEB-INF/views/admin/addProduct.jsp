@@ -9,16 +9,17 @@
         <link href="<c:url value='/resources/css/bootstrap.min.css'/>" rel="stylesheet"/>
         <link href="<c:url value='/resources/css/admin.style.css'/>" rel="stylesheet"/>
         <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" />
-
         <script type="text/javascript" src="<c:url value='/resources/js/javascript.2.1.4.js'/>"></script>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
-
         <title>MStore :: Product</title>
-        <script src="http://code.jquery.com/jquery.min.js"></script>
+        <style type="text/css">
+            .productFile{
+                display: none;
+            }
+        </style>
         <script type="text/javascript">
             $(function () {
                 $("#txtProductFile").val('');
-                $('.productFile').fadeOut('slow');
                 $('#onAddProductFile').click(function () {
                     $('.productFile').fadeIn('slow');
                 });
@@ -50,46 +51,31 @@
                                         + item.filePath + "</td><td>" + item.fileType + "</td>"));
                     });
                 }
-                function ajaxFailure(xhr, status, exception) {
-                    console.log(xhr, status, exception);
-                }
-
             });
-
+            function ajaxFailure(xhr, status, exception) {
+                console.log(xhr, status, exception);
+            }
             function selectSubCategory() {
-
                 var categoryId = $("#categoryName").val();
                 var dataContainer = $("select#subCategory");
-                // 	 alert(categoryName);
-                // 	 return false;
                 $.ajax({
                     url: '${pageContext.request.contextPath}/secure/admin/subcategory/listbyid?categoryId='
                             + categoryId,
                     type: 'GET',
-                    success: ajaxSuccess,
+                    success: ajaxSuccessSubCat,
                     fail: ajaxFailure
                 });
 
-                function ajaxSuccess(result) {
-                    //               alert(result.subCategories);
+                function ajaxSuccessSubCat(result) {
                     dataContainer.empty();
                     dataContainer.append($("<option>").append("Select Sub Category"));
-
                     $.each(result.subCategories, function (i, item) {
                         console.log(i + " " + item.name);
                         dataContainer.append("<option value=" + item.id + ">" + item.name + "</option>");
                     });
-
-                }
-
-                function ajaxFailure() {
-                    alert("Failure");
-
                 }
             }
-
             function selectAlbum() {
-
                 var subCategoryId = $("#subCategory").val();
                 var dataContainerAlbum = $("select#album");
                 $.ajax({
@@ -97,9 +83,8 @@
                             + subCategoryId,
                     type: 'GET',
                     success: ajaxSuccessAlbum,
-                    fail: ajaxFailureAlbum
+                    fail: ajaxFailure
                 });
-
                 function ajaxSuccessAlbum(result) {
                     dataContainerAlbum.empty();
                     dataContainerAlbum.append($("<option>").append("Select Album"));
@@ -107,12 +92,6 @@
                         console.log(i + " " + item.name);
                         dataContainerAlbum.append("<option value=" + item.id + ">" + item.name + "</option>");
                     });
-
-                }
-
-                function ajaxFailureAlbum() {
-                    alert("Failure");
-
                 }
             }
         </script>

@@ -9,10 +9,8 @@
         <link href="<c:url value='/resources/css/bootstrap.min.css'/>" rel="stylesheet"/>
         <link href="<c:url value='/resources/css/admin.style.css'/>" rel="stylesheet"/>
         <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" />
-
         <script type="text/javascript" src="<c:url value='/resources/js/javascript.2.1.4.js'/>"></script>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
-
     </head>
     <body>
         <%@include file="header.jsp"%>
@@ -29,7 +27,11 @@
                     <tr>
                         <td>${ind.index+1}</td>
                         <td>${category.name}</td>
-                        <td><a href="<spring:url value='/secure/admin/category/edit/${category.id}'/>">Edit</a>/<a href="<spring:url value='/secure/admin/category/delete?id=${category.id}'/>">Delete</a></td>
+                        <td>
+<!--                            <a href="<spring:url value='/secure/admin/category/edit/${category.id}'/>">Edit</a>
+                            /-->
+                            <a href="<spring:url value='/secure/admin/category/delete?id=${category.id}'/>">Delete</a>
+                        </td>
                     </tr>
                 </c:forEach>
 

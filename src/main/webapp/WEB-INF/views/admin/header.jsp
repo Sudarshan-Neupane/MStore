@@ -8,12 +8,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div class="navbar-inverse navbar-fixed-top">
     <div class="container">
-        <a href="<c:url value="home" />" ><div class="navbar-brand navbar-left">Music Store Admin Panel</div></a>
-        <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
+        <a href="<c:url value="/secure/admin/home" />" ><div class="navbar-brand navbar-left">Music Store Admin Panel</div></a>
         <div class="collapse navbar-collapse navHeaderCollapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="<c:url value="/secure/admin/categories" />" > Category Mgmt</a></li>

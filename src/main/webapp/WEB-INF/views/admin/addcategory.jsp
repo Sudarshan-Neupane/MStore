@@ -73,32 +73,37 @@
     <body>
         <%@include file="header.jsp"%>
         <div class="container" id="content">
-            <h1>Category &gtcc; Add</h1>
-            <form method="POST" action="">
-                <label>Name: </label>
-                <input type="text" name="name" required="required"/><br/>
-                <button id="onAddSubCat" type="button">Add Sub Category</button><br/>
+            <fieldset>
+                <legend>Category &gtcc; Add</legend>
+                <form method="POST" action="">
+                    <label>Name: </label>
+                    <input type="text" name="name" required="required"/><br/>
+                    <button id="onAddSubCat" type="button">Add Sub Category</button><br/>
 
-                <table id="table" class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>S.No.</th>
-                            <th>Sub Cat Name</th>
-                            <th>Option</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                    <table id="table" class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Sub Cat Name</th>
+                                <th>Option</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                    </tbody>
-                </table>
-                <input type="submit" value="Submit"/>
-            </form>
-            <div class="subCat">
-                <form id="form1">
-                    <label>Sub Cat Name: </label>
-                    <input type="text" id="txtSubCatName" name="name"/>
-                    <button type="button" id="add">Add</button>
+                        </tbody>
+                    </table>
+                    <input type="submit" value="Submit"/>
                 </form>
+            </fieldset>
+            <div class="subCat">
+                <fieldset>
+                    <legend>Sub Category &gtcc; Add</legend>
+                    <form id="form1">
+                        <label>Sub Cat Name: </label>
+                        <input type="text" id="txtSubCatName" name="name"/>
+                        <button type="button" id="add">Add</button>
+                    </form>
+                </fieldset>
             </div>
         </div>
         <%@include file="footer.jsp"%>
