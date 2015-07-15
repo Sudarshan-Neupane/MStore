@@ -76,19 +76,19 @@
                         <form:options items="${categories}" itemValue="id"
                                       itemLabel="name" />
                     </form:select>   
-                    
-                        <label for="sel1">Sub category:</label>
-                        <form:select id="subCategory" path="subCategory.id"
-                                     onchange="selectAlbum()" class="form-control">
-                            <form:option value="Select Sub Category" />
-                        </form:select>
-                        
-                        <label for="sel1">Albums:</label>
-                        <form:select id="album" path="album.id"
-                                      class="form-control">
-                            <form:option value="Select Albums" />
-                        </form:select>
-                    
+
+                    <label for="sel1">Sub category:</label>
+                    <form:select id="subCategory" path="subCategory.id"
+                                 onchange="selectAlbum()" class="form-control">
+                        <form:option value="Select Sub Category" />
+                    </form:select>
+
+                    <label for="sel1">Albums:</label>
+                    <form:select id="album" path="album.id"
+                                 class="form-control">
+                        <form:option value="Select Albums" />
+                    </form:select>
+
 
                 </div>
             </form:form>
@@ -99,7 +99,7 @@
         <div class="products">
             <div class="product">
                 <div>
-                    <img src="#" alt="image">
+                    <img src="<c:url value="/resources/images/jurassic.jpg"/>"/>
                 </div>
                 <div class="buynow">
                     <a href='<spring:url value="/secure/addtocart"/>' class="btn btn-info"><i class="icon-shopping-cart"></i> $20 Buy now</a>
@@ -109,7 +109,7 @@
             </div>
             <div class="product">
                 <div>
-                    <img src="#" alt="image">
+                    <img src="<c:url value="/resources/images/baller.jpg"/>" alt="image">
                 </div>
                 <div class="buynow">
                     <a href='<spring:url value="/secure/addtocart"/>' class="btn btn-info"><i class="icon-shopping-cart"></i> $20 Buy now</a>
@@ -119,7 +119,7 @@
             </div>
             <div class="product">
                 <div>
-                    <img src="#" alt="image">
+                    <img src="<c:url value="/resources/images/one.jpg"/>" alt="image">
                 </div>
                 <div class="buynow">
                     <a href='<spring:url value="/secure/addtocart"/>' class="btn btn-info"><i class="icon-shopping-cart"></i> $20 Buy now</a>
@@ -129,7 +129,7 @@
             </div>
             <div class="product">
                 <div>
-                    <img src="#" alt="image">
+                    <img src="<c:url value="/resources/images/jurassic.jpg"/>" alt="image">
                 </div>
                 <div class="buynow">
                     <a href='<spring:url value="/secure/addtocart"/>' class="btn btn-info"><i class="icon-shopping-cart"></i> $20 Buy now</a>
@@ -139,7 +139,7 @@
             </div>
             <div class="product">
                 <div>
-                    <img src="#" alt="image">
+                    <img src="<c:url value="/resources/images/one.jpg"/>" alt="image">
                 </div>
                 <div class="buynow">
                     <a href="#" class="btn btn-info"><i class="icon-shopping-cart"></i> $20 Buy now</a>
@@ -149,7 +149,7 @@
             </div>
             <div class="product">
                 <div>
-                    <img src="#" alt="image">
+                    <img src="<c:url value="/resources/images/baller.jpg"/>" alt="image">
                 </div>
                 <div class="buynow">
                     <a href="#" class="btn btn-info"><i class="icon-shopping-cart"></i> $20 Buy now</a>

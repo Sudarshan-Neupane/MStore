@@ -18,10 +18,10 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class EmailAspect{
-    @After("execution(public * mum.edu.mstore.controller.ProfileController.profileCreate(..))")
+    @After("execution(public * mum.edu.mstore.controller.ProfileController.updateProfile(..))")
     public void sendmail(JoinPoint joinpoint) {
-        final String username = "sudarshanneupane7@gmail.com";
-        final String password = "musicmum";
+        final String username = "sn6195@gmail.com";
+        final String password = "onetwofc";
       
 
         Properties props = new Properties();

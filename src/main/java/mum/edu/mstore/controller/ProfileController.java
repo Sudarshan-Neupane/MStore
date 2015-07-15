@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.logging.Logger;
+import mum.edu.mstore.domain.Product;
+import mum.edu.mstore.service.CategoryService;
 import mum.edu.mstore.utils.SpringUtils;
 
 /**
@@ -25,6 +27,8 @@ public class ProfileController {
 
     @Autowired
     private UserService userService;
+      @Autowired
+    private CategoryService categoryService;
 //    @Autowired
 //    private EmailMail emailsend;
     private static final Logger logger = Logger.getLogger(ProfileController.class.getName());
@@ -43,7 +47,7 @@ public class ProfileController {
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.POST)
-    public String updateProfile(@Valid @ModelAttribute Profile profile, BindingResult result, Model model) {
+    public String updateProfile(@Valid @ModelAttribute Profile profile, BindingResult result, Model model, Product product) {
         model.addAttribute("gender", Profile.Gender.values());
         if (result.hasErrors()) {
             System.out.println("inside has error");
@@ -51,6 +55,7 @@ public class ProfileController {
         }
         User user = this.userService.findByUserName(SpringUtils.getUserName());
 //        emailsend.sendmail(user.getUserName());
+        model.addAttribute("categories", categoryService.findAll());
         user.setProfile(profile);
         try {
             this.userService.updateProfile(user);
