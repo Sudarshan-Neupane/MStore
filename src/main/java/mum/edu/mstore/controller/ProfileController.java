@@ -13,41 +13,55 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.logging.Logger;
+import mum.edu.mstore.EmailMail;
+import mum.edu.mstore.utils.SpringUtils;
 
 /**
  *
  * @author sudarshan
  */
 @Controller
+@RequestMapping("/secure")
 public class ProfileController {
 
- @Autowired
+    @Autowired
     private UserService userService;
+    @Autowired
+    private EmailMail emailsend;
     private static final Logger logger = Logger.getLogger(ProfileController.class.getName());
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String profileCreate(Model model) {
-//        User user = this.userService.findByUserName(SpringUtils.getUserName());
-//        if(user==null){
-//            user=new User();
-//        }
-
+        User user = this.userService.findByUserName(SpringUtils.getUserName());
+        if (user == null) {
+            user = new User();
+        }
         Profile profile = new Profile();
-        model.addAttribute("user", new User());
+        model.addAttribute("user", user);
         model.addAttribute("gender", Profile.Gender.values());
         model.addAttribute("profile", profile);
         return "profile";
     }
 
- 	@RequestMapping(value = "/profile", method = RequestMethod.POST)
-	public String signUpAdd(@Valid @ModelAttribute Profile profile,
-			BindingResult result, Model model, RedirectAttributes attributes) {
-		if (result.hasErrors()) {
-			System.out.println("inside has error");
-			return "profile";
-		}		
-//		userService.add(user);
-		return "redirect:profile";
-	}
+    @RequestMapping(value = "/profile", method = RequestMethod.POST)
+    public String updateProfile(@Valid @ModelAttribute Profile profile, BindingResult result, Model model) {
+        model.addAttribute("gender", Profile.Gender.values());
+        if (result.hasErrors()) {
+            System.out.println("inside has error");
+            return "profile";
+        }
+        User user = this.userService.findByUserName(SpringUtils.getUserName());
+        emailsend.sendmail(user.getUserName());
+        user.setProfile(profile);
+        try {
+            this.userService.updateProfile(user);
+        } catch (IllegalArgumentException ex) {
+            logger.info("exception occured in profile update");
+            System.out.println(ex.getMessage());
+            model.addAttribute("errors", ex.getMessage());
+            return "profile";
+        }
+        return "redirect:home";
+    }
 
 }

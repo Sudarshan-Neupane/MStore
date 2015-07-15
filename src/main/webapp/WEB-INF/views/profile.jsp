@@ -6,6 +6,7 @@
     <div class="container">
         <div class="container">
             <h1>Edit Profile</h1>
+            <span class="message"><b>Welcome ${user.firstName} ${user.lastName}</b></span>
             <hr>
             <div class="profileForm">
 

@@ -41,7 +41,7 @@ public class SignupController {
 		}
 		user.setRole(Role.ROLE_USER);
 		userService.add(user);
-		return "redirect:profile";
+		return "redirect:/";
 	}
 
 }
