@@ -1,4 +1,4 @@
-package mum.edu.mstore;
+package mum.edu.mstore.controller;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
-@RequestMapping(value = "/product")
+@RequestMapping("/secure/admin")
 public class ProductController {
 
 	@Autowired
@@ -37,8 +37,23 @@ public class ProductController {
 	AlbumService albumService;
 
 	private final String KEY = "PRODUCT";
+	
+	
+	public ProductController()
+	{
+		
+	}
+	
+	@RequestMapping(value = "/products", method = RequestMethod.GET)
+	public String listProducts(Model model) {
+		model.addAttribute("products", productService.findAll());
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+		return "admin/products";
+	}
+	
+	
+
+	@RequestMapping(value = "/product/add", method = RequestMethod.GET)
 	public String showProduct(Product product, Model model,
 			HttpServletRequest request) {
 
@@ -46,7 +61,7 @@ public class ProductController {
 		model.addAttribute("categories", categoryService.findAll());
 		ProductFile productFile = new ProductFile();
 		model.addAttribute("filetypes", productFile.getFileType().values());
-		return "addProduct";
+		return "admin/addProduct";
 	}
 
 	@RequestMapping(value = "/test", method = RequestMethod.POST)
@@ -58,31 +73,23 @@ public class ProductController {
 		// myProduct = product;
 		product.setProductFile(myProduct.getProductFile());
 		this.productService.add(product);
-		return "redirect:/product/";
+		return "redirect:/product/products";
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@RequestMapping(value = "/product/add", method = RequestMethod.POST)
 	public String addProduct(HttpServletRequest request) {
 
-		System.out.println("inside add product post");
 		Product myProduct = (Product) request.getSession().getAttribute(KEY);
-		System.out.println("inside add product post");
 		myProduct.setAlbum(this.albumService.findOne(Long.valueOf(request.getParameter("album.id"))));
-		System.out.println("inside add product post");
 		myProduct.setCategory(this.categoryService.findOne(Long.valueOf(request.getParameter("category.id"))));
-		System.out.println("inside add product post");
 		myProduct.setLength(request.getParameter("length"));
-		System.out.println("inside add product post");
 		myProduct.setName(request.getParameter("name"));
-		System.out.println("inside add product post");
 		myProduct.setPrice(Double.valueOf(request.getParameter("price")));
-		System.out.println("inside add product post");
 		myProduct.setSubCategory(this.categoryService.findSubCategoryBySubCategoryId(Long.valueOf(request.getParameter("subCategory.id"))));
-		System.out.println("inside add product post");
 		myProduct.setYear(Long.valueOf(request.getParameter("year")));
 		// myProduct = product;
 		this.productService.add(myProduct);
-		return "redirect:/product/";
+		return "redirect:/secure/admin/products";
 	}
 
 	@RequestMapping(value = "/album/list", method = RequestMethod.GET)

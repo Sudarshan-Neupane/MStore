@@ -24,7 +24,7 @@
              	return;
              }
              $.ajax({
-                 url: '${pageContext.request.contextPath}/product/productfile/add',
+                 url: '${pageContext.request.contextPath}/secure/admin/productfile/add',
                  type: 'POST',
                  data: $('#form1').serialize(),
                  success: ajaxSuccess,
@@ -85,7 +85,7 @@
 		var subCategoryId = $("#subCategory").val();
 		var dataContainerAlbum = $("select#album");
 		$.ajax({
-					url : '${pageContext.request.contextPath}/product/album/list?subCategoryId='
+					url : '${pageContext.request.contextPath}/secure/admin/album/list?subCategoryId='
 							+ subCategoryId,
 					type : 'GET',
 					success : ajaxSuccessAlbum,
