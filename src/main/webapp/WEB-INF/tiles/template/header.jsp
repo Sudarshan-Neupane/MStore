@@ -19,10 +19,10 @@
             <header>
                 <div class="menu">            
                     <a href='<spring:url value="/"/>'>Home </a> 
-                    <a href='<spring:url value="/login"/>'>Login </a> 
+                    <a href='<spring:url value="/dologin"/>'>Login </a> 
                     <a href='<spring:url value="/signup"/>'>Sign Up </a>
                     <c:if test="${pageContext.request.isUserInRole('ROLE_USER')}">
-                      <a href='<spring:url value="/secure/profile"/>'>Edit Profile </a>
+                        <a href='<spring:url value="/secure/profile"/>'>Edit Profile </a>
                     </c:if>
                 </div>
             </header>

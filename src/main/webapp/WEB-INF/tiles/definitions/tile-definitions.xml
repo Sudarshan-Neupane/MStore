@@ -14,10 +14,10 @@
 		<put-attribute name="title" value="Home page" />
 		<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
 </definition>
-<!--<definition name="login" extends="baseLayout">
+<definition name="login" extends="baseLayout">
 		<put-attribute name="title" value="Login" />
 		<put-attribute name="body" value="/WEB-INF/views/login.jsp" />
-</definition>-->
+</definition>
 <definition name="signup" extends="baseLayout">
 		<put-attribute name="title" value="Login" />
 		<put-attribute name="body" value="/WEB-INF/views/signup.jsp" />
