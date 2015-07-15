@@ -17,6 +17,6 @@ public class UserAspect {
   @After("execution(* mum.edu.mstore.controller.HomeController.home(..))")  
   public void logininfo(){
       System.out.println("Error login page details");
-    logger.info("log file");  
+        logger.info("log file");  
   }  
 }

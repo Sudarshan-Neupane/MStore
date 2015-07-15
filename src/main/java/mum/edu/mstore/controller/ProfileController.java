@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.logging.Logger;
-import mum.edu.mstore.EmailMail;
 import mum.edu.mstore.utils.SpringUtils;
 
 /**
@@ -26,8 +25,8 @@ public class ProfileController {
 
     @Autowired
     private UserService userService;
-    @Autowired
-    private EmailMail emailsend;
+//    @Autowired
+//    private EmailMail emailsend;
     private static final Logger logger = Logger.getLogger(ProfileController.class.getName());
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
@@ -51,7 +50,7 @@ public class ProfileController {
             return "profile";
         }
         User user = this.userService.findByUserName(SpringUtils.getUserName());
-        emailsend.sendmail(user.getUserName());
+//        emailsend.sendmail(user.getUserName());
         user.setProfile(profile);
         try {
             this.userService.updateProfile(user);
