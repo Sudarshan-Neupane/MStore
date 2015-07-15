@@ -7,9 +7,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Add Album</title>
-        <spring:url value="/resources/js/javascript.2.1.4.js" var="js" />
-        <script type="text/javascript" src="${js}"></script>
+        <title>MStore :: Album</title>
+        <link href="<c:url value='/resources/css/bootstrap.min.css'/>" rel="stylesheet"/>
+        <link href="<c:url value='/resources/css/admin.style.css'/>" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" />
+
+        <script type="text/javascript" src="<c:url value='/resources/js/javascript.2.1.4.js'/>"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+
         <script>
             "use strict";
             $(function () {
@@ -46,54 +51,59 @@
         </script>
     </head>
     <body>
-        <h1>Add Album</h1>
-        <table>
-            <form:form modelAttribute="album" enctype="multipart/form-data">
-                <tr>
-                    <td><form:label path="name">Album Name</form:label></td>
-                    <td><form:input path="name" required="required" /></td>
-                    <td><form:errors path="*" /></td>
-                </tr>
-                <tr>
-                    <td><form:label path="artist">Artist Name</form:label></td>
-                    <td><form:input path="artist" required="required" /></td>
-                    <td><form:errors path="artist" /></td>
-                </tr>
-
-                <tr>
-                    <td><form:label path="image">Album Image</form:label></td>
-                    <td><form:input type="file" path="image" /></td>
-                    <td><form:errors path="image" /></td>
-                </tr>
-                <tr>
-                    <td><form:label path="category">Category</form:label></td>
-                    <td><form:select id="category" path="category.id"
-                                 required="required">
-                            <form:option value="0">Select Category</form:option>
-                            <form:options items="${categories}"
-                                          itemValue="id" itemLabel="name" />
-                        </form:select></td>
-                    <td><form:errors path="category" /></td>
-                </tr>
-                <tr>
-                    <td><form:label path="subCategory">Sub Category</form:label></td>
-                        <td>
-                        <form:select id="subCategory" path="subCategory.id" required="required" >
-                        </form:select>
-                    </td>
-                    <td><form:errors path="subCategory" /></td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td colspan="2"><form:button type="submit">Submit</form:button>&nbsp;&nbsp;
-                        <form:button type="reset">Reset</form:button></td>
+        <%@include file="header.jsp"%>
+        <div class="container" id="content">
+            <h1>Album &gtcc; Add</h1>
+            <table>
+                <form:form modelAttribute="album" enctype="multipart/form-data">
+                    <tr>
+                        <td><form:label path="name">Album Name: </form:label></td>
+                        <td><form:input path="name" required="required" /></td>
+                        <td><form:errors path="*" /></td>
+                    </tr>
+                    <tr>
+                        <td><form:label path="artist">Artist Name: </form:label></td>
+                        <td><form:input path="artist" required="required" /></td>
+                        <td><form:errors path="artist" /></td>
                     </tr>
 
-            </form:form>
+                    <tr>
+                        <td><form:label path="image">Album Image: </form:label></td>
+                        <td><form:input type="file" path="image" /></td>
+                        <td><form:errors path="image" /></td>
+                    </tr>
+                    <tr>
+                        <td><form:label path="category">Category: </form:label></td>
+                        <td><form:select id="category" path="category.id"
+                                     required="required">
+                                <form:option value="0">Select Category</form:option>
+                                <form:options items="${categories}"
+                                              itemValue="id" itemLabel="name" />
+                            </form:select></td>
+                        <td><form:errors path="category" /></td>
+                    </tr>
+                    <tr>
+                        <td><form:label path="subCategory">Sub Category: </form:label></td>
+                            <td>
+                            <form:select id="subCategory" path="subCategory.id" required="required" >
+                                <form:option label="Select Sub Category" value="0"/>
+                            </form:select>
+                        </td>
+                        <td><form:errors path="subCategory" /></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td colspan="2"><form:button type="submit">Submit</form:button>&nbsp;&nbsp;
+                            <form:button type="reset">Reset</form:button></td>
+                        </tr>
 
-        </table>
-        <c:if test="${not empty image}">
-            <img src='<spring:url value="/resources/images/album/${image}"/>'height="200" width="250"/>
-        </c:if>
+                </form:form>
+
+            </table>
+            <c:if test="${not empty image}">
+                <img src='<spring:url value="/resources/images/album/${image}"/>'height="200" width="250"/>
+            </c:if>
+        </div>
+        <%@include file="footer.jsp"%>
     </body>
 </html>

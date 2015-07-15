@@ -1,9 +1,3 @@
-<%-- 
-    Document   : addCategory
-    Created on : Jul 13, 2015, 12:28:35 AM
-    Author     : bipin
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -11,14 +5,18 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="<c:url value='/resources/css/bootstrap.min.css'/>" rel="stylesheet"/>
+        <link href="<c:url value='/resources/css/admin.style.css'/>" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" />
+
+        <script type="text/javascript" src="<c:url value='/resources/js/javascript.2.1.4.js'/>"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+
         <style type="text/css">
             .subCat{
                 display: none;
             }
         </style>
-        <spring:url value="/resources/js/javascript.2.1.4.js" var="js" />
-<%-- <spring:url value="/resources/js/script.js" var="js" /> --%>
-        <script type="text/javascript" src="${js}"></script>
         <script>
             "use strict";
             $(function () {
@@ -29,40 +27,40 @@
                 $("#add").click(function (event) {
                     event.preventDefault();
                     console.log("check empty: " + $("#txtSubCatName").val().length);
-                    if($("#txtSubCatName").val().length < 0){
-                    	console.log("empty");
-                    	return;
+                    if ($("#txtSubCatName").val().length < 0) {
+                        console.log("empty");
+                        return;
                     }
                     $.ajax({
                         url: '${pageContext.request.contextPath}/secure/admin/subcategory/add',
                         type: 'POST',
                         data: $('#form1').serialize(),
                         success: ajaxSuccess,
-						fail:ajaxFailure
+                        fail: ajaxFailure
                     });
                     $("#txtSubCatName").val('');
                     $('.subCat').fadeOut('slow');
                 });
 
 
-                $("#table").on("click", "a",function(){
-                	var val = $(this).attr("href");
+                $("#table").on("click", "a", function () {
+                    var val = $(this).attr("href");
                     $.ajax({
-                        url: '${pageContext.request.contextPath}/secure/admin/subcategory/delete?name='+val,
+                        url: '${pageContext.request.contextPath}/secure/admin/subcategory/delete?name=' + val,
                         type: 'GET',
                         success: ajaxSuccess,
-						fail:ajaxFailure
+                        fail: ajaxFailure
                     });
                     return false;
                 });
-                
+
                 function ajaxSuccess(result) {
-                	dataContainer.empty();
+                    dataContainer.empty();
                     $.each(result.subCategories, function (i, item) {
                         console.log(i + " " + item.name);
                         dataContainer.append($("<tr>")
-                       		 .append("<td>"+ parseInt(i+1) + "</td><td>"
-                       				 + item.name + "</td><td>" + "<a href='"+item.name+"'>Remove</a>" +"</td>"));
+                                .append("<td>" + parseInt(i + 1) + "</td><td>"
+                                        + item.name + "</td><td>" + "<a href='" + item.name + "'>Remove</a>" + "</td>"));
                     });
                 }
                 function ajaxFailure(xhr, status, exception) {
@@ -70,35 +68,39 @@
                 }
             });
         </script>
-        <title>Add Category</title>
+        <title>MStore :: Category Add</title>
     </head>
     <body>
-        <h1>Add Category</h1>
-        <form method="POST" action="">
-            <label>Name</label>
-            <input type="text" name="name" required="required"/>
-            <table id="table">
-                <thead>
-                    <tr>
-                        <th>S.No.</th>
-                        <th>Sub Cat Name</th>
-                        <th>Option</th>
-                    </tr>
-                </thead>
-                <tbody>
-                   
-                </tbody>
-            </table>
-            <button id="onAddSubCat" type="button">Add Sub Category</button>
-            <input type="submit" value="Submit"/>
-        </form>
+        <%@include file="header.jsp"%>
+        <div class="container" id="content">
+            <h1>Category &gtcc; Add</h1>
+            <form method="POST" action="">
+                <label>Name: </label>
+                <input type="text" name="name" required="required"/><br/>
+                <button id="onAddSubCat" type="button">Add Sub Category</button><br/>
 
-        <div class="subCat">
-            <form id="form1">
-                <label>Sub Cat Name: </label>
-                <input type="text" id="txtSubCatName" name="name"/>
-                <button type="button" id="add">Add</button>
+                <table id="table" class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>S.No.</th>
+                            <th>Sub Cat Name</th>
+                            <th>Option</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+                <input type="submit" value="Submit"/>
             </form>
+            <div class="subCat">
+                <form id="form1">
+                    <label>Sub Cat Name: </label>
+                    <input type="text" id="txtSubCatName" name="name"/>
+                    <button type="button" id="add">Add</button>
+                </form>
+            </div>
         </div>
+        <%@include file="footer.jsp"%>
     </body>
 </html>

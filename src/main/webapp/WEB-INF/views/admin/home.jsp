@@ -7,7 +7,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Admin Home Page</title>
+        <title>MStore :: Admin Panel</title>
         <link href="<c:url value='/resources/css/bootstrap.min.css'/>" rel="stylesheet"/>
         <link href="<c:url value='/resources/css/admin.style.css'/>" rel="stylesheet"/>
         <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" />
@@ -18,8 +18,11 @@
     <body>
         <%@include file="header.jsp"%>
 
-    <section>
-
-    </section>
-</body>
+        <div class="container" id="content">
+            <div class="searchContainer">
+                <h3>Welcome to Music Store Admin Panel</h3>
+            </div>
+        </div>
+        <%@include file="footer.jsp"%>
+    </body>
 </html>
