@@ -3,7 +3,6 @@ package mum.edu.mstore.test;
 import mum.edu.mstore.domain.Album;
 import mum.edu.mstore.domain.Category;
 import mum.edu.mstore.domain.Product;
-import mum.edu.mstore.domain.Product.Type;
 import mum.edu.mstore.domain.ProductFile;
 import mum.edu.mstore.domain.ProductFile.FileType;
 import mum.edu.mstore.domain.SubCategory;
@@ -54,10 +53,8 @@ public class ProductTest extends BaseTest {
 		product.setCategory(category);
 		product.setSubCategory(subCategory);
 		product.addProductFile(productFile);
-		product.setArtistName(Artist);
 		product.setYear(year);
 		product.setPrice(Price);
-		product.setType(Type.MP3);
 		product.setMusicImage(musicImage);
 		product.setAlbum(album);
 		

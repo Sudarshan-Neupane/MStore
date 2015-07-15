@@ -23,7 +23,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/signup.jsp" />
 </definition>
 <definition name="profile" extends="baseLayout">
-		<put-attribute name="title" value="Login" />
+		<put-attribute name="title" value="Profile" />
 		<put-attribute name="body" value="/WEB-INF/views/profile.jsp" />
+</definition>
+<definition name="addtocart" extends="baseLayout">
+		<put-attribute name="title" value="Add to cart" />
+		<put-attribute name="body" value="/WEB-INF/views/addtocart.jsp" />
 </definition>
 </tiles-definitions>

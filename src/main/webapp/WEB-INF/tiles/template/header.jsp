@@ -24,6 +24,9 @@
                     <c:if test="${pageContext.request.isUserInRole('ROLE_USER')}">
                         <a href='<spring:url value="/secure/profile"/>'>Edit Profile </a>
                     </c:if>
+                   <c:if test="${pageContext.request.isUserInRole('ROLE_USER')}">
+                        <a href='<spring:url value="/logout"/>'>Logout </a>
+                    </c:if>
                 </div>
             </header>
 
