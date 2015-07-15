@@ -19,7 +19,7 @@
             <c:forEach items="${products}" varStatus="ind" var="myproduct">
                 <tr>
                     <td>${ind.index+1}</td>
-                    <td>${myproduct.name}</td>sd
+                    <td>${myproduct.name}</td>
                     <td><a href="<spring:url value='/secure/admin/product/edit/${product.id}'/>">Edit</a>/<a href="<spring:url value='/secure/admin/product/delete?id=${product.id}'/>">Delete</a></td>
                 </tr>
             </c:forEach>

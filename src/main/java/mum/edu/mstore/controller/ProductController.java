@@ -47,7 +47,7 @@ public class ProductController {
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
 	public String listProducts(Model model) {
 		model.addAttribute("products", productService.findAll());
-
+         System.out.println(productService.findAll());
 		return "admin/products";
 	}
 	
