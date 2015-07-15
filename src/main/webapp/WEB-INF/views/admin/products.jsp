@@ -14,13 +14,23 @@
             <tr>
                 <td>S No.</td>
                 <td>Name</td>
-                <td>Option</td>
+                <td>Category</td>
+                <td>Sub Category</td>
+                <td>Album</td>
+                <td>Published Year</td>
+                <td>Price</td>
+                <td>Length</td>
             </tr>
             <c:forEach items="${products}" varStatus="ind" var="myproduct">
                 <tr>
                     <td>${ind.index+1}</td>
                     <td>${myproduct.name}</td>
-                    <td><a href="<spring:url value='/secure/admin/product/edit/${product.id}'/>">Edit</a>/<a href="<spring:url value='/secure/admin/product/delete?id=${product.id}'/>">Delete</a></td>
+                    <td>${myproduct.category.name}</td>
+                    <td>${myproduct.subCategory.name}</td>
+                    <td>${myproduct.album.name}</td>
+                    <td>${myproduct.year}</td>
+                    <td>${myproduct.price}</td>
+                    <td>${myproduct.length}</td>
                 </tr>
             </c:forEach>
 

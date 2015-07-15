@@ -6,7 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Album {
@@ -22,6 +25,8 @@ public class Album {
     @JoinColumn(name = "sub_cat_id", nullable = false, updatable = true)
     private SubCategory subCategory;
     private String artist;
+    @Transient
+    private MultipartFile image;
 
     public Album() {
     }
@@ -33,7 +38,6 @@ public class Album {
         this.artist = artist;
     }
 
-    
     public Long getId() {
         return id;
     }
@@ -74,5 +78,12 @@ public class Album {
         this.artist = artist;
     }
 
-    
+    public MultipartFile getImage() {
+        return image;
+    }
+
+    public void setImage(MultipartFile image) {
+        this.image = image;
+    }
+
 }

@@ -66,7 +66,7 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public SubCategory findSubCategoryBySubCategoryId(Long id) {
 		// TODO Auto-generated method stub
-		return (SubCategory) this.categoryRepository.findSubCategoryBySubCategoryId(id);
+		return this.categoryRepository.findSubCategoryBySubCategoryId(id);
 	}
 
 

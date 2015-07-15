@@ -17,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -59,8 +60,7 @@ public class ProductController {
 
 		request.getSession().setAttribute(KEY, product);
 		model.addAttribute("categories", categoryService.findAll());
-		ProductFile productFile = new ProductFile();
-		model.addAttribute("filetypes", productFile.getFileType().values());
+		model.addAttribute("filetypes", FileType.values());
 		return "admin/addProduct";
 	}
 
@@ -118,5 +118,11 @@ public class ProductController {
 				+ request.getParameter("name"));
 		return product;
 	}
+        
+        @RequestMapping(value="/product/delete/{id}", method=RequestMethod.GET)
+        public String deleteProduct(@PathVariable Long id){
+            this.albumService.deleteAlbum(id);
+            return "redirect:/secure/admin/products";
+        }
 
 }
