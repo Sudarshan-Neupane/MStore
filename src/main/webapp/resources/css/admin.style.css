@@ -1,0 +1,35 @@
+/* 
+    Created on : Jul 4, 2014, 7:22:30 AM
+    Author     : bipin
+*/
+#content{ margin-bottom: 50px; margin-top: 50px;}
+.searchContainer{    margin: 0 auto;    text-align: center;}
+.searchBox{
+    margin: 3px 2px; padding: 6px 8px; width: 50%; min-width: 300px;
+    font-size: 14px;
+}
+.error{font-size: 11px; color: #d2322d; text-align: center;}
+.err{color: #d2322d;}
+
+table.list{
+    margin: 20px 0;
+    width: 100%;
+}
+table.list tr{
+    border-bottom: #cccccc solid 2px;
+}
+table.list tr:first-child{
+    border-bottom: #cccccc solid 2px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.navbar-inverse {
+    background-color: #27354B;
+    border-color: #080808;
+}
+.navbar-inverse .navbar-brand {
+    color: #FFF;
+    font-weight: bold;
+}
+.col{ margin-top: 20px;}
+.clear{clear: both;}
