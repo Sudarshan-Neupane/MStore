@@ -115,6 +115,7 @@ public class ProductController {
 				FileType.valueOf(request.getParameter("type"))));
 		request.getSession().setAttribute(KEY, product);
 		System.out.println("Product File added: "
+				
 				+ request.getParameter("name"));
 		return product;
 	}
