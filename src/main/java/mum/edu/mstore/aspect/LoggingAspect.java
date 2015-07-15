@@ -18,6 +18,7 @@ public class LoggingAspect {
 	  {
 		 
 		 System.out.println((new Date() + "\t" + "method=" +joinPoint.getSignature().getName()+ "\n"+"message =" +"Called" + "\n" ));
+		 //
 		  
 	  }
 	 
